@@ -13,10 +13,10 @@ A subset was then re-scanned with the semantic LLM pass enabled through the loca
 
 ## Headline: do not read the raw verdict
 
-SkillSpector returned `DO_NOT_INSTALL` for 22 of 28 completed scans, and a maximum risk score of 100 for 21 of them.
+SkillSpector returned `DO_NOT_INSTALL` for 23 of the 29 scans, and a maximum risk score of 100 for 22 of them.
 
 That verdict list includes `anthropics/claude-plugins-community`, which is Anthropic's own marketplace where every plugin has already passed automated security scanning and human review.
-It also includes `openai/skills`, OpenAI's official catalogue for Codex.
+It also includes `openai/skills` and `openai/plugins`, OpenAI's official catalogue and plugin examples for Codex, the latter carrying 9 CRITICAL findings.
 When a scanner flags both vendors' own reviewed repositories as "do not install", the raw verdict is not a usable install gate.
 
 Two things drive this.
@@ -33,6 +33,7 @@ Each of these was opened and read, not assumed.
 | `anthropics/claude-plugins-community` | `SC9` HIGH x20, "Concealed executable artifact" | Ordinary CI shell scripts under `.github/actions/` |
 | `anthropics/claude-plugins-community` | `TM2` HIGH, "Tool chaining abuse" | The substring `; rm -` in a CI script |
 | `openai/skills` | `YR2` HIGH, "Python webshell" | A secure-coding guide's own "Insecure patterns" section, which documents the anti-pattern |
+| `openai/plugins` | `YR1` CRITICAL x6, "Credential exfiltration webhook" | Official Zoom and Twilio integration docs, matched because `process.env.`, `fetch(` and `ngrok.io` appear on the same page |
 | `freestylefly/awesome-gpt-image-2` | `YR2` CRITICAL, "Known PHP webshell (WSO)" | The three bytes `Wso` occurring inside `data/images/case333.png` |
 | `blader/humanizer` | `AR2` HIGH, "Anti-refusal statement" | The phrase "without warning" inside an example sentence demonstrating em dash removal |
 | `daymade/claude-code-skills` | `TT3` CRITICAL, "Credential exfiltration" | An IMA API key read from the environment and sent as an auth header to `ima.qq.com`, its own API |
@@ -75,12 +76,11 @@ Exactly one repository exceeds the baseline.
 | `JuliusBrussee/caveman` | 100 | 0 | 67 | 1326 | 0.05 | 0.0% | below |
 | `tt-a1i/archify` | 100 | 0 | 19 | 592 | 0.03 | 17.7% | below |
 | `freestylefly/awesome-gpt-image-2` | 100 | 1 | 1 | 461 | 0.004 | 12.1% | below |
+| `openai/plugins` | 100 | 9 | 96 | 5244 | 0.02 | 0.0% | below |
 | `K-Dense-AI/scientific-agent-skills` | 100 | 0 | 6 | 2421 | 0.002 | 0.8% | below |
 | `jakubkrehel/make-interfaces-feel-better` | 20 | 0 | 0 | 13 | 0.00 | 100% | **SAFE** |
 | `millwright-labs/minto-pyramid-skill` | 25 | 0 | 0 | 12 | 0.00 | 91.7% | below |
 | `heygen-com/hyperframes` | 24 | 0 | 0 | 4 | 0.00 | 100% | incomplete clone, disregard |
-
-`openai/plugins` did not finish within the session and is not included.
 
 ## What is actually worth acting on
 
@@ -140,4 +140,4 @@ git clone --depth 1 https://github.com/owner/repo /tmp/repo
 skillspector scan /tmp/repo --no-llm
 ```
 
-Raw JSON reports for all 28 completed scans are in `data/skillspector/`, and the calibrated table is in `data/scan-results.csv`.
+Raw JSON reports for all 29 scans are in `data/skillspector/`, and the calibrated table is in `data/scan-results.csv`.

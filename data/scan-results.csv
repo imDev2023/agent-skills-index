@@ -22,6 +22,7 @@ harryvondiesel-web/5-persona-advisory-board,44,MEDIUM,CAUTION,0,1,5,0,14,0.071,1
 RiyaParikh0112/vibe-coding-playbook,29,MEDIUM,CAUTION,0,1,4,0,17,0.059,100.0,complete,5
 JuliusBrussee/caveman,100,CRITICAL,DO_NOT_INSTALL,0,67,403,21,1326,0.051,0.0,partial,491
 tt-a1i/archify,100,CRITICAL,DO_NOT_INSTALL,0,19,17,2,592,0.032,17.7,partial,38
+openai/plugins,100,CRITICAL,DO_NOT_INSTALL,9,96,1454,27,5244,0.02,0.0,partial,1586
 freestylefly/awesome-gpt-image-2,100,CRITICAL,DO_NOT_INSTALL,1,1,20,0,461,0.004,12.1,partial,22
 K-Dense-AI/scientific-agent-skills,100,CRITICAL,DO_NOT_INSTALL,0,6,5,2,2421,0.002,0.8,partial,13
 heygen-com/hyperframes,24,MEDIUM,CAUTION,0,0,19,0,4,0.0,100.0,complete,19
