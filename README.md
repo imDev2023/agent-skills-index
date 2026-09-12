@@ -5,6 +5,9 @@ Every entry carries a short description of what the repository is and a note on 
 
 Metadata (stars, language, licence, last push) was pulled from the GitHub API on 2026-09-12 and is a point-in-time snapshot.
 
+The 29 repositories here that are installable agent skills were scanned with NVIDIA SkillSpector.
+See [SECURITY-SCAN.md](SECURITY-SCAN.md) for the results, including why the scanner's raw `DO_NOT_INSTALL` verdict should not be taken at face value.
+
 ## Contents
 
 - [Agent Skills & Skill Packs](#agent-skills--skill-packs) (11)
