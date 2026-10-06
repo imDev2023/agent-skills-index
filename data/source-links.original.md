@@ -19,28 +19,28 @@
 10. https://github.com/witt3rd/oh-my-hermes
 
 
-I Have ADHD — https://github.com/ayghri/i-have-adhd
-ECC — https://github.com/affaan-m/ECC
-Ponytail — https://github.com/DietrichGebert/pon...
-HumanLayer Skills — https://github.com/humanlayer/skills
-OpenAI Plugins — https://github.com/openai/plugins
-Archify — https://github.com/tt-a1i/archify
-Context Mode — https://github.com/mksglu/context-mode
-Matt Pocock Skills — https://github.com/mattpocock/skills
-Humanizer — https://github.com/blader/humanizer
-OpenAI Skills — https://github.com/openai/skills
+I Have ADHD - https://github.com/ayghri/i-have-adhd
+ECC - https://github.com/affaan-m/ECC
+Ponytail - https://github.com/DietrichGebert/pon...
+HumanLayer Skills - https://github.com/humanlayer/skills
+OpenAI Plugins - https://github.com/openai/plugins
+Archify - https://github.com/tt-a1i/archify
+Context Mode - https://github.com/mksglu/context-mode
+Matt Pocock Skills - https://github.com/mattpocock/skills
+Humanizer - https://github.com/blader/humanizer
+OpenAI Skills - https://github.com/openai/skills
 
-freellmapi — https://github.com/tashfeenahmed/freellmapi
-magic-compact — https://github.com/aerovato/magic-compact
-headroom — https://github.com/headroomlabs-ai/headroom
-pxpipe — https://github.com/teamchong/pxpipe
-leanctx — https://github.com/jia-gao/leanctx
-token-optimizer-mcp — https://github.com/ooples/token-optimizer-mcp
-context-mode — https://github.com/mksglu/context-mode
-ponytail — https://github.com/DietrichGebert/ponytail
-graphify — https://github.com/Graphify-Labs/graphify
-OmniRoute — https://github.com/diegosouzapw/OmniRoute
-codebase-memory-mcp — https://github.com/DeusData/codebase-memory-mcp
+freellmapi - https://github.com/tashfeenahmed/freellmapi
+magic-compact - https://github.com/aerovato/magic-compact
+headroom - https://github.com/headroomlabs-ai/headroom
+pxpipe - https://github.com/teamchong/pxpipe
+leanctx - https://github.com/jia-gao/leanctx
+token-optimizer-mcp - https://github.com/ooples/token-optimizer-mcp
+context-mode - https://github.com/mksglu/context-mode
+ponytail - https://github.com/DietrichGebert/ponytail
+graphify - https://github.com/Graphify-Labs/graphify
+OmniRoute - https://github.com/diegosouzapw/OmniRoute
+codebase-memory-mcp - https://github.com/DeusData/codebase-memory-mcp
 
  tt-a1i/archify https://github.com/tt-a1i/archify
  THU-MAIC/OpenMAIC https://github.com/THU-MAIC/OpenMAIC
@@ -53,31 +53,31 @@ https://github.com/google-research/timesfm
 https://github.com/K-Dense-AI/scientific-agent-skills
 https://github.com/JetBrains/go-modern-guidelines
 
-Cap — https://github.com/CapSoftware/Cap
-Ghost — https://github.com/TryGhost/Ghost
-Twenty — https://github.com/twentyhq/twenty
-Nextcloud — https://github.com/nextcloud/server
-Chatwoot — https://github.com/chatwoot/chatwoot
+Cap - https://github.com/CapSoftware/Cap
+Ghost - https://github.com/TryGhost/Ghost
+Twenty - https://github.com/twentyhq/twenty
+Nextcloud - https://github.com/nextcloud/server
+Chatwoot - https://github.com/chatwoot/chatwoot
 https://github.com/Onyx-Dev-Labs/doodle-note
 https://github.com/dani-garcia/vaultwarden
 https://github.com/languagetool-org/languagetool
 https://github.com/VonHoltenCodes/SlowBooks-Pro-2026
 
-Omarchy — https://github.com/basecamp/omarchy
-OpenLogi — https://github.com/AprilNEA/OpenLogi
-OpenAI Codex — https://github.com/openai/codex
-Apache Maka — https://github.com/apache/maka
-Modular — https://github.com/modular/modular
-Securo — https://github.com/securo-finance/securo
+Omarchy - https://github.com/basecamp/omarchy
+OpenLogi - https://github.com/AprilNEA/OpenLogi
+OpenAI Codex - https://github.com/openai/codex
+Apache Maka - https://github.com/apache/maka
+Modular - https://github.com/modular/modular
+Securo - https://github.com/securo-finance/securo
 https://github.com/anthropics/claude-plugins-community
 https://github.com/freestylefly/awesome-gpt-image-2
 https://github.com/harry0703/MoneyPrinterTurbo
 
-OpenViking — https://github.com/volcengine/OpenViking
-Needle — https://github.com/cactus-compute/needle
-Lumina — https://github.com/Bino5150/lumina
-Holehe — https://github.com/megadose/holehe
-TLDR Radio — https://github.com/mat-nolen/tldr-radio
+OpenViking - https://github.com/volcengine/OpenViking
+Needle - https://github.com/cactus-compute/needle
+Lumina - https://github.com/Bino5150/lumina
+Holehe - https://github.com/megadose/holehe
+TLDR Radio - https://github.com/mat-nolen/tldr-radio
 https://github.com/cathrynlavery/diagram-design
 https://github.com/semantica-agi/semantica
 https://github.com/NVIDIA-NeMo/Switchyard
@@ -89,22 +89,22 @@ https://github.com/DusanCar-sudo/aura-code
 https://github.com/millwright-labs/minto-pyramid-skill
 https://github.com/harryvondiesel-web/5-persona-advisory-board
 
-PostHog — https://github.com/posthog/posthog
-Zapier Connectors — https://github.com/zapier/connectors
-RTK — https://github.com/rtk-ai/rtk
-Docusaurus — https://github.com/facebook/docusaurus
+PostHog - https://github.com/posthog/posthog
+Zapier Connectors - https://github.com/zapier/connectors
+RTK - https://github.com/rtk-ai/rtk
+Docusaurus - https://github.com/facebook/docusaurus
 https://github.com/abi/screenshot-to-code
 https://github.com/Graphify-Labs/graphify
 https://github.com/hesreallyhim/awesome-claude-code
 https://github.com/discoveredlabs/awesome-aeo-seo
 https://github.com/RiyaParikh0112/vibe-coding-playbook
 
-Authentik — https://github.com/goauthentik/authentik
-Kubescape — https://github.com/kubescape/kubescape
-Material UI — https://github.com/mui/material-ui
-VeraCrypt — https://github.com/veracrypt/VeraCrypt
-Blackbird — https://github.com/p1ngul1n0/blackbird
-Planka — https://github.com/plankanban/planka
+Authentik - https://github.com/goauthentik/authentik
+Kubescape - https://github.com/kubescape/kubescape
+Material UI - https://github.com/mui/material-ui
+VeraCrypt - https://github.com/veracrypt/VeraCrypt
+Blackbird - https://github.com/p1ngul1n0/blackbird
+Planka - https://github.com/plankanban/planka
 https://github.com/jaywcjlove/awesome-mac
 https://github.com/donnemartin/system-design-primer
 https://github.com/SimplifyJobs/Summer2027-Internships
@@ -112,16 +112,16 @@ https://github.com/aldinokemal/go-whatsapp-web-multidevice
 https://github.com/vikd1000/investment-council
 https://github.com/rutvej/DAA
 
-AppFlowy — https://github.com/AppFlowy-IO/AppFlowy
-Immich — https://github.com/immich-app/immich
-Documenso — https://github.com/documenso/documenso
-Excalidraw — https://github.com/excalidraw/excalidraw
-Penpot — https://github.com/penpot/penpot
-Cal.DIY — https://github.com/calcom/cal.diy
-ListMonk — https://github.com/knadh/listmonk
-Dub — https://github.com/dubinc/dub
-RustDesk — https://github.com/rustdesk/rustdesk
-FluidVoice — https://github.com/altic-dev/FluidVoice
+AppFlowy - https://github.com/AppFlowy-IO/AppFlowy
+Immich - https://github.com/immich-app/immich
+Documenso - https://github.com/documenso/documenso
+Excalidraw - https://github.com/excalidraw/excalidraw
+Penpot - https://github.com/penpot/penpot
+Cal.DIY - https://github.com/calcom/cal.diy
+ListMonk - https://github.com/knadh/listmonk
+Dub - https://github.com/dubinc/dub
+RustDesk - https://github.com/rustdesk/rustdesk
+FluidVoice - https://github.com/altic-dev/FluidVoice
 
 https://github.com/lyogavin/airllm
 https://github.com/block/buzz
@@ -158,3 +158,16 @@ Cal.diy - https://github.com/calcom/cal.diy
 Autumn - https://github.com/useautumn/autumn
 Invoice Ninja - https://github.com/invoiceninja/invoiceninja
 Typebot - https://github.com/baptisteArno/typebot.io
+
+## Batch 3 (2026-10-06)
+
+debpalash/VoiceStudio - https://github.com/debpalash/VoiceStudio
+vercel/next.js - https://github.com/vercel/next.js
+pbakaus/impeccable - https://github.com/pbakaus/impeccable
+https://github.com/paperclipai/paperclip
+HKUDS/CLI-Anything - https://github.com/HKUDS/CLI-Anything
+https://github.com/vectorize-io/hindsight
+https://github.com/rohitg00/ai-engineering-from-scratch
+https://github.com/anthropics/financial-services
+https://github.com/alirezarezvani/claude-skills
+https://github.com/davila7/claude-code-templates

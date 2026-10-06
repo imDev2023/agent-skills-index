@@ -143,3 +143,16 @@ https://github.com/mautic/mautic
 https://github.com/useautumn/autumn
 https://github.com/invoiceninja/invoiceninja
 https://github.com/baptisteArno/typebot.io
+
+## Batch 3 (2026-10-06)
+
+https://github.com/debpalash/VoiceStudio
+https://github.com/vercel/next.js
+https://github.com/pbakaus/impeccable
+https://github.com/paperclipai/paperclip
+https://github.com/HKUDS/CLI-Anything
+https://github.com/vectorize-io/hindsight
+https://github.com/rohitg00/ai-engineering-from-scratch
+https://github.com/anthropics/financial-services
+https://github.com/alirezarezvani/claude-skills
+https://github.com/davila7/claude-code-templates

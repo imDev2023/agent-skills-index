@@ -1,31 +1,33 @@
 # Agent Skills and Tools Index
 
-A sorted, categorised and deduplicated index of 120 GitHub repositories, built from flat lists of saved links.
+A sorted, categorised and deduplicated index of 130 GitHub repositories, built from flat lists of saved links.
 Every entry carries a short description of what the repository is and a note on how to use it.
 
 Metadata (stars, language, licence, last push) was pulled from the GitHub API on 2026-09-12 and is a point-in-time snapshot.
 The five repositories added in the second batch (Mautic, Typebot, Frappe CRM, Invoice Ninja, Autumn) were pulled on 2026-10-01.
+The ten repositories added in the third batch were pulled on 2026-10-06.
 
 The 29 repositories here that are installable agent skills were scanned with NVIDIA SkillSpector.
 See [SECURITY-SCAN.md](SECURITY-SCAN.md) for the results, including why the scanner's raw `DO_NOT_INSTALL` verdict should not be taken at face value.
+Five skill repositories from the third batch (`HKUDS/CLI-Anything`, `anthropics/financial-services`, `davila7/claude-code-templates`, `alirezarezvani/claude-skills`, `pbakaus/impeccable`) have not been scanned yet.
 
 ## Contents
 
-- [Agent Skills & Skill Packs](#agent-skills--skill-packs) (11)
-- [Agent Behaviour & Output Quality](#agent-behaviour--output-quality) (8)
+- [Agent Skills & Skill Packs](#agent-skills--skill-packs) (15)
+- [Agent Behaviour & Output Quality](#agent-behaviour--output-quality) (9)
 - [Context & Token Optimization](#context--token-optimization) (8)
-- [Agent Memory & Knowledge Graphs](#agent-memory--knowledge-graphs) (5)
-- [Coding Agents & Harnesses](#coding-agents--harnesses) (12)
+- [Agent Memory & Knowledge Graphs](#agent-memory--knowledge-graphs) (6)
+- [Coding Agents & Harnesses](#coding-agents--harnesses) (13)
 - [LLM Gateways & Model Routing](#llm-gateways--model-routing) (3)
 - [Local Inference & Models](#local-inference--models) (5)
 - [Web Data, Scraping & Browser Automation](#web-data-scraping--browser-automation) (7)
 - [Diagrams, Docs & Writing](#diagrams-docs--writing) (7)
-- [Video, Image & Audio](#video-image--audio) (9)
+- [Video, Image & Audio](#video-image--audio) (10)
 - [Security, OSINT & Privacy](#security-osint--privacy) (9)
 - [Self-Hosted Apps & OSS Alternatives](#self-hosted-apps--oss-alternatives) (18)
-- [Developer Tools & Desktop](#developer-tools--desktop) (6)
+- [Developer Tools & Desktop](#developer-tools--desktop) (7)
 - [Finance & Business](#finance--business) (5)
-- [Awesome Lists, Learning & Career](#awesome-lists-learning--career) (7)
+- [Awesome Lists, Learning & Career](#awesome-lists-learning--career) (8)
 
 ---
 
@@ -54,6 +56,13 @@ An opinionated agent-harness optimisation system bundling skills, "instincts", m
 Production-grade engineering skills for AI coding agents from Addy Osmani, oriented at web performance, accessibility and code quality.
 **Use it for:** Install the skills you want into `~/.claude/skills/`, then invoke them by name when working on frontend code.
 
+### [HKUDS/CLI-Anything](https://github.com/HKUDS/CLI-Anything)
+
+`★ 51.6k` · `Python` · `Apache-2.0` · last push 2026-09-22
+
+A Claude Code plugin that reads a piece of software's source or docs and generates a tested, agent-friendly CLI harness for it, plus CLI-Hub, a registry of 100+ community-built harnesses (GIMP, Blender, LibreOffice, Obsidian, n8n, QGIS and more) each shipped with a `SKILL.md`.
+**Use it for:** Install with `/plugin marketplace add HKUDS/CLI-Anything` then `/plugin install cli-anything`, and run `/cli-anything <path-or-repo>`; check CLI-Hub with `pip install cli-anything-hub` first, since the tool you want may already have a harness.
+
 ### [K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills)
 
 `★ 44.5k` · `Python` · `MIT` · last push 2026-09-12
@@ -61,12 +70,33 @@ Production-grade engineering skills for AI coding agents from Addy Osmani, orien
 165 validated science skills plus 100+ scientific databases covering biology, chemistry, medicine and drug discovery.
 **Use it for:** Install the domain packs you need; useful if you ever want an agent to do literature or dataset work rather than code.
 
+### [anthropics/financial-services](https://github.com/anthropics/financial-services)
+
+`★ 38.8k` · `Python` · `Apache-2.0` · last push 2026-09-21
+
+Anthropic's reference agents, skills and data connectors for investment banking, equity research, private equity and wealth management: Pitch Agent, Earnings Reviewer, Model Builder, GL Reconciler, KYC Screener and vertical plugins with `/comps`, `/dcf` and `/earnings`.
+**Use it for:** Add with `claude plugin marketplace add anthropics/financial-services` and install `financial-analysis` first; each agent also ships as a Claude Managed Agents template. Output is draft analyst work for professional review, not advice.
+
+### [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates)
+
+`★ 32.4k` · `Python` · `MIT` · last push 2026-10-06
+
+A CLI and web catalogue (aitmpl.com) of ready-made Claude Code agents, slash commands, hooks, settings, MCP configs and skills, plus local analytics, a conversation monitor and a health check.
+**Use it for:** Run `npx claude-code-templates@latest` to browse interactively, or pass `--agent`, `--command`, `--hook` or `--mcp` to install one component; `--health-check` and `--analytics` are useful on their own.
+
 ### [virgiliojr94/book-to-skill](https://github.com/virgiliojr94/book-to-skill)
 
 `★ 30.1k` · `Python` · `MIT` · last push 2026-09-12
 
 Converts a technical book PDF into a structured Claude Code skill you can reference while working.
 **Use it for:** Point it at a PDF you own and it emits a `SKILL.md` plus reference files; good for turning standards documents into agent-usable context.
+
+### [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills)
+
+`★ 27.8k` · `Python` · `MIT` · last push 2026-08-30
+
+A very large skill library (388 skills, 30+ agents, 70+ commands, ~700 stdlib-only Python helper scripts) spanning engineering, DevOps, marketing, product, compliance, C-level advisory and finance, converted for 13 coding agents.
+**Use it for:** Add with `/plugin marketplace add alirezarezvani/claude-skills` and install only the domain bundles you need, such as `engineering-skills`; installing everything will crowd your skill list.
 
 ### [openai/skills](https://github.com/openai/skills)
 
@@ -122,6 +152,13 @@ Single-purpose skills that change how the agent thinks or writes rather than wha
 
 Makes the agent behave like a YAGNI-minded senior dev so it stops over-engineering and writing code you did not ask for.
 **Use it for:** Install as a skill or plugin; pairs well with your "prefer simplicity and long-term maintainability" rule.
+
+### [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+
+`★ 77.5k` · `JavaScript` · `Apache-2.0` · last push 2026-10-06
+
+A design skill for coding agents that grew out of Anthropic's `frontend-design`: one `/impeccable` skill with 24 commands (`craft`, `critique`, `audit`, `polish`, `typeset`, `layout`, `bolder`, `quieter` and more), live browser iteration, and 60 deterministic detector rules for tell-tale AI-generated UI.
+**Use it for:** Run `npx impeccable install` in a project, then `/impeccable init` to write `PRODUCT.md`; the detector CLI and browser extension work without an LLM or API key, so you can run them in CI.
 
 ### [blader/humanizer](https://github.com/blader/humanizer)
 
@@ -247,6 +284,13 @@ Persistent, queryable context that survives beyond one session.
 Turns a codebase plus its docs, SQL schemas, configs and PDFs into a queryable knowledge graph using deterministic AST parsing, no vector store.
 **Use it for:** You already have this installed as the `/graphify` skill; run it to index a repo before deep architectural work.
 
+### [vectorize-io/hindsight](https://github.com/vectorize-io/hindsight)
+
+`★ 46.3k` · `Python` · `MIT` · last push 2026-10-06
+
+An agent memory server built around retain, recall and reflect operations that consolidates raw facts into observations and mental models, with state-of-the-art LongMemEval results and support for 25+ LLM providers including local ones.
+**Use it for:** Run the Docker image (API on port 8888, UI on 9999) and connect through the Python or TypeScript client, the LiteLLM wrapper, or its MCP endpoint at `/mcp/{bank_id}/`; `hindsight-all` runs embedded with no server.
+
 ### [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)
 
 `★ 43k` · `C` · `MIT` · last push 2026-09-12
@@ -294,6 +338,13 @@ A fully open-source terminal coding agent, model-agnostic and the base that seve
 
 OpenAI's lightweight Rust coding agent that runs in your terminal.
 **Use it for:** Install via npm or Homebrew; worth having alongside Claude Code for cross-checking a second model on the same repo.
+
+### [paperclipai/paperclip](https://github.com/paperclipai/paperclip)
+
+`★ 98k` · `TypeScript` · `MIT` · last push 2026-10-06
+
+A Node.js server and React dashboard that runs a team of AI agents as a company: goals, org chart, task board, budgets, approvals and audit trail, with any agent (Claude Code, Codex, OpenClaw, Cursor, HTTP endpoints) hired per role.
+**Use it for:** Run `npx paperclipai@latest onboard --yes`, or `npx paperclipai test-drive` with an API key for a quick look; most useful once you are juggling many long-running agent sessions and need cost limits.
 
 ### [THU-MAIC/OpenMAIC](https://github.com/THU-MAIC/OpenMAIC)
 
@@ -563,6 +614,13 @@ Generates HD short-form videos from a topic or keyword through an automated AI w
 Make videos programmatically with React, with a full preview studio and render pipeline.
 **Use it for:** Use when you want video-as-code in a React codebase; HyperFrames targets the same problem for agents.
 
+### [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio)
+
+`★ 54.2k` · `Python` · `AGPL-3.0` · last push 2026-10-06
+
+A fully local, open-source ElevenLabs alternative desktop app: voice cloning, voice design, video dubbing, dictation, transcription and audiobook creation in 646 languages, with a local API and MCP server for agents.
+**Use it for:** Install the Electron app with `curl -fsSL https://voicestudio.sh/install | sh` (macOS/Linux); AGPL-3.0, so a hosted service built on it must publish its source.
+
 ### [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
 
 `★ 49.1k` · `TypeScript` · `Apache-2.0` · last push 2026-09-12
@@ -819,6 +877,13 @@ Frappe's fully featured open-source CRM: leads, deals, notes, tasks, email, What
 
 General-purpose utilities that are not agent-specific.
 
+### [vercel/next.js](https://github.com/vercel/next.js)
+
+`★ 143.2k` · `JavaScript` · `MIT` · last push 2026-10-06
+
+Vercel's React framework: file-system routing, React Server Components, server actions, static and dynamic rendering, and image and font optimisation.
+**Use it for:** Start with `npx create-next-app@latest`; for Cloudflare deployment use OpenNext via the `nextjs-on-cloudflare` skill rather than Vercel's runtime.
+
 ### [mui/material-ui](https://github.com/mui/material-ui)
 
 `★ 99k` · `JavaScript` · `MIT` · last push 2026-09-11
@@ -935,6 +1000,13 @@ Systematically categorised collection of high-quality macOS software.
 
 Microsoft's 12-week, 24-lesson AI curriculum with Jupyter notebooks.
 **Use it for:** Follow the notebooks for structured fundamentals rather than piecemeal tutorials.
+
+### [rohitg00/ai-engineering-from-scratch](https://github.com/rohitg00/ai-engineering-from-scratch)
+
+`★ 65.2k` · `Python` · `MIT` · last push 2026-10-06
+
+A free AI engineering curriculum of 523 lessons in 20 phases (~342 hours) from maths and ML foundations through LLM engineering, MCP, agent skills and agents, in Python, TypeScript, Rust and Julia, where every lesson ships a reusable artifact.
+**Use it for:** Pick one goal-based route from the README table, such as Phase 14 (agents) or the Agent Skills fast path, rather than working through all 523 lessons in order.
 
 ### [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
 

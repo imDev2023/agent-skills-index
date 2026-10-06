@@ -35,3 +35,10 @@ A second list of 9 links was added.
 | `Cal.diy - https://github.com/calcom/cal.diy` | already listed under Self-Hosted Apps & OSS Alternatives |
 
 New entries: `mautic/mautic`, `baptisteArno/typebot.io` and `frappe/crm` under Self-Hosted Apps & OSS Alternatives; `invoiceninja/invoiceninja` and `useautumn/autumn` under Finance & Business.
+
+## Batch 3 (2026-10-06)
+
+A third list of 10 links was added.
+None of them were already in the index and none repeated within the list, so all 10 were added, bringing the total to 130.
+
+New entries: `HKUDS/CLI-Anything`, `anthropics/financial-services`, `davila7/claude-code-templates` and `alirezarezvani/claude-skills` under Agent Skills & Skill Packs; `pbakaus/impeccable` under Agent Behaviour & Output Quality; `vectorize-io/hindsight` under Agent Memory & Knowledge Graphs; `paperclipai/paperclip` under Coding Agents & Harnesses; `debpalash/VoiceStudio` under Video, Image & Audio; `vercel/next.js` under Developer Tools & Desktop; `rohitg00/ai-engineering-from-scratch` under Awesome Lists, Learning & Career.
