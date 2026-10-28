@@ -216,14 +216,17 @@ Where the bridge sends it could not be traced through the minified code, so star
 ### How this was checked
 
 The fallbacks were found by reading the code at commit `0ee34f3` and confirmed on 2026-10-28 by running the real scripts with dummy keys in a clean environment.
-Text, vision and `sn-da-image-caption` requests went through a local proxy that recorded the destination host and refused the connection; image requests ignored the proxy, so their destination comes from the error each one returned.
+Text, vision and `sn-da-image-caption` requests went through a local proxy that recorded the destination host and refused the connection.
+Image requests ignored the proxy, so their destination comes from the error each one returned, except in the last setup, where the tripwire pointed at the recorder itself and the request was seen arriving.
 
 | Setup | Image generation | Text, vision and `sn-da-image-caption` |
 |---|---|---|
 | Keys set, no base URLs | `token.sensenova.cn`, whose live server answered HTTP 404 | `token.sensenova.cn` |
 | The safe configuration above | `generativelanguage.googleapis.com` | `api.anthropic.com` |
 | The same without `SN_CHAT_BASE_URL` | `generativelanguage.googleapis.com` | `sn-base-url-not-set.invalid`, the tripwire |
+| The same without `SN_IMAGE_GEN_BASE_URL`, tripwire set to the local recorder | The tripwire, with the Gemini key in `x-goog-api-key` | `api.anthropic.com` |
 
 The image client ignores proxy settings because `utils/httpx_client.py` passes its own transport to `httpx.AsyncClient`, which switches off httpx's `HTTPS_PROXY` handling despite the comment there saying otherwise.
 That is why SenseNova's live server received the request carrying the dummy Gemini key in the first setup, which is direct proof of the leak.
-The tripwire was exercised for text, vision and `sn-da-image-caption`; image generation reads `SN_BASE_URL` through the same lookup in `configs.py`, but forgetting `SN_IMAGE_GEN_BASE_URL` has not been run yet.
+The last setup used a local address as the tripwire so the misdirected request could be observed; with the recommended `.invalid` value the same request fails at the DNS lookup instead.
+Together, the last two setups show the tripwire catching a forgotten base URL for every call, including the image call that carries the Gemini key.
