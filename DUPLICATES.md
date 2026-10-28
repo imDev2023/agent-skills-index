@@ -42,3 +42,10 @@ A third list of 10 links was added.
 None of them were already in the index and none repeated within the list, so all 10 were added, bringing the total to 130.
 
 New entries: `HKUDS/CLI-Anything`, `anthropics/financial-services`, `davila7/claude-code-templates` and `alirezarezvani/claude-skills` under Agent Skills & Skill Packs; `pbakaus/impeccable` under Agent Behaviour & Output Quality; `vectorize-io/hindsight` under Agent Memory & Knowledge Graphs; `paperclipai/paperclip` under Coding Agents & Harnesses; `debpalash/VoiceStudio` under Video, Image & Audio; `vercel/next.js` under Developer Tools & Desktop; `rohitg00/ai-engineering-from-scratch` under Awesome Lists, Learning & Career.
+
+## Batch 4 (2026-10-28)
+
+A single link was added on request.
+It was not already in the index, bringing the total to 131.
+
+New entry: `OpenSenseNova/SenseNova-Skills` under Agent Skills & Skill Packs.

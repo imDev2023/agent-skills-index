@@ -171,3 +171,7 @@ https://github.com/rohitg00/ai-engineering-from-scratch
 https://github.com/anthropics/financial-services
 https://github.com/alirezarezvani/claude-skills
 https://github.com/davila7/claude-code-templates
+
+## Batch 4 (2026-10-28)
+
+https://github.com/OpenSenseNova/SenseNova-Skills

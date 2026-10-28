@@ -1,6 +1,7 @@
 # SkillSpector Security Scan
 
 NVIDIA SkillSpector v2.11.2 run against the agent-skill repositories in this index.
+`OpenSenseNova/SenseNova-Skills`, added later, was reviewed by reading its code instead; see [Manual review: SenseNova-Skills API key routing](#manual-review-sensenova-skills-api-key-routing) at the end.
 
 ## Scope and method
 
@@ -141,3 +142,78 @@ skillspector scan /tmp/repo --no-llm
 ```
 
 Raw JSON reports for all 29 scans are in `data/skillspector/`, and the calibrated table is in `data/scan-results.csv`.
+
+## Manual review: SenseNova-Skills API key routing
+
+`OpenSenseNova/SenseNova-Skills` joined the index on 2026-10-28 and has not been through SkillSpector.
+Its code was read by hand at upstream commit `0ee34f3` instead, and that review found one issue to deal with before installing it.
+
+### Unset base URLs fall back to SenseNova
+
+The skills are written for SenseNova's own API, but `sn-image-base` can also drive Gemini, OpenAI and Anthropic models.
+Each call takes a key and a base URL from environment variables, and when no base URL is set it uses SenseNova's mainland-China endpoint instead of failing.
+
+| Call | Key (first one set wins) | Base URL (first one set wins) | Built-in fallback |
+|---|---|---|---|
+| Image generation and editing | `SN_IMAGE_GEN_API_KEY`, `SN_API_KEY` | `SN_IMAGE_GEN_BASE_URL`, `SN_BASE_URL` | `https://token.sensenova.cn/v1` |
+| Text (`sn-text-optimize`) | `SN_TEXT_API_KEY`, `SN_CHAT_API_KEY`, `SN_API_KEY` | `SN_TEXT_BASE_URL`, `SN_CHAT_BASE_URL`, `SN_BASE_URL` | `https://token.sensenova.cn/v1` |
+| Vision (`sn-image-recognize`) | `SN_VISION_API_KEY`, `SN_CHAT_API_KEY`, `SN_API_KEY` | `SN_VISION_BASE_URL`, `SN_CHAT_BASE_URL`, `SN_BASE_URL` | `https://token.sensenova.cn/v1` |
+| `sn-da-image-caption` | `SN_VISION_API_KEY`, `SN_CHAT_API_KEY`, `SN_API_KEY` | `SN_VISION_BASE_URL`, `SN_CHAT_BASE_URL`, `SN_BASE_URL` | `https://token.sensenova.cn/v1` |
+
+The fallbacks are hard-coded in `skills/sn-image-base/scripts/sn_image_base/configs.py` at lines 99 and 109, and in `skills/sn-da-image-caption/scripts/caption.py` at line 48.
+Command-line flags such as `--base-url` take precedence when passed, but `sn-infographic` tells the agent not to pass them, so in practice the environment decides.
+A Gemini key set as `SN_IMAGE_GEN_API_KEY` without `SN_IMAGE_GEN_BASE_URL`, or an OpenAI or Anthropic key set as `SN_CHAT_API_KEY` without `SN_CHAT_BASE_URL`, is therefore sent to SenseNova in the request headers.
+The image base URL is marked `required=True`, but that check never fires because the built-in default means the value is never empty.
+`sn-infographic`, `sn-image-imitate` and `sn-image-resume` all run through `sn-image-base`, so they inherit the same behaviour.
+`sn-ppt-tools` has no built-in endpoint and fails instead, so it is not affected.
+
+### Safe configuration
+
+Four rules make these skills safe to run on your own keys.
+
+1. **Set a tripwire base URL.**
+   Set `SN_BASE_URL` to a host that can never resolve, such as `https://sn-base-url-not-set.invalid/v1`.
+   Every lookup in the table checks `SN_BASE_URL` before the built-in fallback, so a call you forgot to configure fails with a DNS error naming that host instead of reaching SenseNova.
+   The `.invalid` top-level domain is reserved by RFC 2606 and never resolves.
+2. **Give every call you use its own key and base URL, and leave `SN_API_KEY` unset.**
+   `SN_API_KEY` feeds every call at once, which is how a key meant for one provider ends up at another.
+3. **Use dedicated, spend-capped keys.**
+   Create separate keys for these skills instead of reusing your main ones, so a mistake costs one revocation.
+4. **Pin the reviewed commit and do not use `sn-update`.**
+   `sn-update` hard-resets to upstream `main` on every run, so a new built-in endpoint would arrive without notice.
+   After any manual update, run `grep -rnE 'https?://[a-z0-9.-]*sensenova' --include='*.py' --include='*.js' --include='*.mjs' --include='*.sh' skills/` in the clone.
+   At `0ee34f3` it prints the three fallbacks above plus one documentation example in `generation/sensenova.py`, so anything beyond that needs reading before you trust the update.
+
+The example below runs image generation on Gemini and the prompt rewriting and vision review on Claude.
+The endpoints, model types and Gemini model come from `skills/sn-image-base/README.md`, and the Claude model is the current Sonnet.
+
+```bash
+# Tripwire: any call without its own base URL fails here instead of reaching SenseNova
+export SN_BASE_URL="https://sn-base-url-not-set.invalid/v1"
+
+# Image generation on Gemini
+export SN_IMAGE_GEN_MODEL_TYPE="nano-banana"
+export SN_IMAGE_GEN_BASE_URL="https://generativelanguage.googleapis.com"
+export SN_IMAGE_GEN_MODEL="gemini-3.1-flash-image-preview"
+export SN_IMAGE_GEN_API_KEY="<dedicated Gemini key>"
+
+# Prompt rewriting and vision review on Claude
+export SN_CHAT_TYPE="anthropic-messages"
+export SN_CHAT_BASE_URL="https://api.anthropic.com/v1"
+export SN_CHAT_MODEL="claude-sonnet-5-5"
+export SN_CHAT_API_KEY="<dedicated Anthropic key>"
+```
+
+For OpenAI instead, use `SN_IMAGE_GEN_MODEL_TYPE="openai-image"` with `SN_IMAGE_GEN_BASE_URL="https://api.openai.com/v1"`, or `SN_CHAT_TYPE="openai-completions"` with `SN_CHAT_BASE_URL="https://api.openai.com/v1"`.
+If you never use SenseNova, blocking `token.sensenova.cn` and `token.sensenova.ai` in a firewall or `/etc/hosts` adds a last line of defence.
+
+### The workbench servers can pick up your Anthropic key
+
+`sn-ppt-workbench` and `sn-deep-research` each start a local web server from `workbench-runtime/dist-server/index.mjs`, a minified bundle of about 1.9 MB whose source is not in the repository.
+When no workbench-specific key is set, that server falls back to `ANTHROPIC_API_KEY` from the environment for its agent bridge, so starting it from a shell that exports your main Anthropic key hands that key over.
+Where the bridge sends it could not be traced through the minified code, so start the workbench only from an environment without your main keys.
+
+### How this was checked
+
+These findings come from reading the code at commit `0ee34f3`, with the file and line references given above.
+They have not yet been confirmed by running the skills with dummy keys behind a logging proxy.

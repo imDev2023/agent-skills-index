@@ -1,19 +1,21 @@
 # Agent Skills and Tools Index
 
-A sorted, categorised and deduplicated index of 130 GitHub repositories, built from flat lists of saved links.
+A sorted, categorised and deduplicated index of 131 GitHub repositories, built from flat lists of saved links.
 Every entry carries a short description of what the repository is and a note on how to use it.
 
 Metadata (stars, language, licence, last push) was pulled from the GitHub API on 2026-09-12 and is a point-in-time snapshot.
 The five repositories added in the second batch (Mautic, Typebot, Frappe CRM, Invoice Ninja, Autumn) were pulled on 2026-10-01.
 The ten repositories added in the third batch were pulled on 2026-10-06.
+`OpenSenseNova/SenseNova-Skills`, added on its own on 2026-10-28, was pulled the same day.
 
 The 29 repositories here that are installable agent skills were scanned with NVIDIA SkillSpector.
 See [SECURITY-SCAN.md](SECURITY-SCAN.md) for the results, including why the scanner's raw `DO_NOT_INSTALL` verdict should not be taken at face value.
 Five skill repositories from the third batch (`HKUDS/CLI-Anything`, `anthropics/financial-services`, `davila7/claude-code-templates`, `alirezarezvani/claude-skills`, `pbakaus/impeccable`) have not been scanned yet.
+`OpenSenseNova/SenseNova-Skills` has not been scanned either; its code was reviewed by hand instead, and that review found it can send your API keys to SenseNova, so read the [manual review](SECURITY-SCAN.md#manual-review-sensenova-skills-api-key-routing) before installing it.
 
 ## Contents
 
-- [Agent Skills & Skill Packs](#agent-skills--skill-packs) (15)
+- [Agent Skills & Skill Packs](#agent-skills--skill-packs) (16)
 - [Agent Behaviour & Output Quality](#agent-behaviour--output-quality) (9)
 - [Context & Token Optimization](#context--token-optimization) (8)
 - [Agent Memory & Knowledge Graphs](#agent-memory--knowledge-graphs) (6)
@@ -111,6 +113,18 @@ The official skills catalogue for OpenAI Codex, portable to any agent that reads
 
 Curated Codex plugin examples, each with a `.codex-plugin/plugin.json` manifest plus optional skills, agents, commands, hooks and MCP config.
 **Use it for:** Use it as the reference template when authoring your own plugin; the Figma and design-system examples are the richest.
+
+### [OpenSenseNova/SenseNova-Skills](https://github.com/OpenSenseNova/SenseNova-Skills)
+
+`★ 6k` · `JavaScript` · `MIT` · last push 2026-10-26
+
+SenseTime's 36 office-work skills for OpenClaw and hermes-agent in the standard `SKILL.md` format: infographic and image generation, PPT decks, deep research, academic, code and social search, Excel analysis and HTML reports, built around the SenseNova model API.
+**Use it for:** Copy only `skills/sn-infographic` and `skills/sn-image-base` into `~/.claude/skills/` for infographics with 87 layouts, 66 styles and a vision-model review loop on Gemini, OpenAI or Claude; the rest overlaps with skills you already have, and a full clone is ~146 MB of mostly gallery images.
+
+> [!WARNING]
+> Unset base URLs send your API keys to SenseNova.
+> `sn-image-base`, which the image and infographic skills call, and `sn-da-image-caption` fall back to SenseNova's mainland-China endpoint `https://token.sensenova.cn/v1` for any image, text or vision call whose base URL is not set, so a Gemini, OpenAI or Anthropic key configured without one is sent there.
+> Apply the [safe configuration](SECURITY-SCAN.md#manual-review-sensenova-skills-api-key-routing) before installing.
 
 ### [anthropics/claude-plugins-community](https://github.com/anthropics/claude-plugins-community)
 
