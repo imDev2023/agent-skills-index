@@ -230,3 +230,27 @@ The image client ignores proxy settings because `utils/httpx_client.py` passes i
 That is why SenseNova's live server received the request carrying the dummy Gemini key in the first setup, which is direct proof of the leak.
 The last setup used a local address as the tripwire so the misdirected request could be observed; with the recommended `.invalid` value the same request fails at the DNS lookup instead.
 Together, the last two setups show the tripwire catching a forgotten base URL for every call, including the image call that carries the Gemini key.
+
+### Re-running the check
+
+`tools/sensenova_route_test.py` re-runs the four setups and checks each result against the table above, so it also works as a check after an upstream update.
+It runs SenseNova's code, so read the checkout first.
+In setups A to C the image request still reaches the real host carrying the dummy Gemini key, while `--setups D` stays on your machine.
+
+```bash
+D=$(mktemp -d)
+
+# Only the skills folder at the reviewed commit, about 15 MB instead of 146 MB
+git clone --quiet --filter=blob:none --no-checkout https://github.com/OpenSenseNova/SenseNova-Skills.git "$D/sensenova"
+git -C "$D/sensenova" sparse-checkout set skills
+git -C "$D/sensenova" checkout --quiet 0ee34f37b969011d527eba348d1bec220fd1a7dd
+
+# The libraries the skills import, at the versions behind the table
+uv venv --quiet --python 3.12 "$D/venv"
+uv pip install --quiet --python "$D/venv/bin/python" httpx==0.28.1 openai==3.40.0 pillow==13.0.0 python-dotenv==1.2.4 typing-extensions==4.16.0
+
+python3 tools/sensenova_route_test.py --skills "$D/sensenova/skills" --python "$D/venv/bin/python"
+```
+
+To check a newer upstream commit, check that one out instead of `0ee34f3`.
+All 16 checks passing means the table still holds; any FAIL means this section needs revisiting.
