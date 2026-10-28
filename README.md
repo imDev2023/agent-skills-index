@@ -11,7 +11,7 @@ The ten repositories added in the third batch were pulled on 2026-10-06.
 The 29 repositories here that are installable agent skills were scanned with NVIDIA SkillSpector.
 See [SECURITY-SCAN.md](SECURITY-SCAN.md) for the results, including why the scanner's raw `DO_NOT_INSTALL` verdict should not be taken at face value.
 Five skill repositories from the third batch (`HKUDS/CLI-Anything`, `anthropics/financial-services`, `davila7/claude-code-templates`, `alirezarezvani/claude-skills`, `pbakaus/impeccable`) have not been scanned yet.
-`OpenSenseNova/SenseNova-Skills` has not been scanned either; its code was reviewed by hand instead, and that review found it can send your API keys to SenseNova, so read the [manual review](SECURITY-SCAN.md#manual-review-sensenova-skills-api-key-routing) before installing it.
+`OpenSenseNova/SenseNova-Skills` has not been scanned either; reading its code and then running it with dummy keys showed that it can send your API keys to SenseNova, so read the [manual review](SECURITY-SCAN.md#manual-review-sensenova-skills-api-key-routing) before installing it.
 
 ## Contents
 

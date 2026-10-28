@@ -1,7 +1,7 @@
 # SkillSpector Security Scan
 
 NVIDIA SkillSpector v2.11.2 run against the agent-skill repositories in this index.
-`OpenSenseNova/SenseNova-Skills`, added later, was reviewed by reading its code instead; see [Manual review: SenseNova-Skills API key routing](#manual-review-sensenova-skills-api-key-routing) at the end.
+`OpenSenseNova/SenseNova-Skills`, added later, was reviewed by reading and running its code instead; see [Manual review: SenseNova-Skills API key routing](#manual-review-sensenova-skills-api-key-routing) at the end.
 
 ## Scope and method
 
@@ -146,7 +146,7 @@ Raw JSON reports for all 29 scans are in `data/skillspector/`, and the calibrate
 ## Manual review: SenseNova-Skills API key routing
 
 `OpenSenseNova/SenseNova-Skills` joined the index on 2026-10-28 and has not been through SkillSpector.
-Its code was read by hand at upstream commit `0ee34f3` instead, and that review found one issue to deal with before installing it.
+Its code was read by hand at upstream commit `0ee34f3` and then run with dummy keys instead, and that review found one issue to deal with before installing it.
 
 ### Unset base URLs fall back to SenseNova
 
@@ -205,7 +205,7 @@ export SN_CHAT_API_KEY="<dedicated Anthropic key>"
 ```
 
 For OpenAI instead, use `SN_IMAGE_GEN_MODEL_TYPE="openai-image"` with `SN_IMAGE_GEN_BASE_URL="https://api.openai.com/v1"`, or `SN_CHAT_TYPE="openai-completions"` with `SN_CHAT_BASE_URL="https://api.openai.com/v1"`.
-If you never use SenseNova, blocking `token.sensenova.cn` and `token.sensenova.ai` in a firewall or `/etc/hosts` adds a last line of defence.
+If you never use SenseNova, blocking `token.sensenova.cn` and `token.sensenova.ai` in a firewall or `/etc/hosts` adds a last line of defence; an `HTTPS_PROXY` filter does not, because the image client ignores proxy settings.
 
 ### The workbench servers can pick up your Anthropic key
 
@@ -215,5 +215,15 @@ Where the bridge sends it could not be traced through the minified code, so star
 
 ### How this was checked
 
-These findings come from reading the code at commit `0ee34f3`, with the file and line references given above.
-They have not yet been confirmed by running the skills with dummy keys behind a logging proxy.
+The fallbacks were found by reading the code at commit `0ee34f3` and confirmed on 2026-10-28 by running the real scripts with dummy keys in a clean environment.
+Text, vision and `sn-da-image-caption` requests went through a local proxy that recorded the destination host and refused the connection; image requests ignored the proxy, so their destination comes from the error each one returned.
+
+| Setup | Image generation | Text, vision and `sn-da-image-caption` |
+|---|---|---|
+| Keys set, no base URLs | `token.sensenova.cn`, whose live server answered HTTP 404 | `token.sensenova.cn` |
+| The safe configuration above | `generativelanguage.googleapis.com` | `api.anthropic.com` |
+| The same without `SN_CHAT_BASE_URL` | `generativelanguage.googleapis.com` | `sn-base-url-not-set.invalid`, the tripwire |
+
+The image client ignores proxy settings because `utils/httpx_client.py` passes its own transport to `httpx.AsyncClient`, which switches off httpx's `HTTPS_PROXY` handling despite the comment there saying otherwise.
+That is why SenseNova's live server received the request carrying the dummy Gemini key in the first setup, which is direct proof of the leak.
+The tripwire was exercised for text, vision and `sn-da-image-caption`; image generation reads `SN_BASE_URL` through the same lookup in `configs.py`, but forgetting `SN_IMAGE_GEN_BASE_URL` has not been run yet.
